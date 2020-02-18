@@ -1,7 +1,9 @@
 package handler
 
 import (
-	"encoding/json"
+	//"encoding/json"
+	//"github.com/google/uuid"
+	//"github.com/gorilla/mux"
 	"net/http"
 )
 
@@ -9,8 +11,12 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
 	//TODO answer
-	answerJSON, _ := json.Marshal(answer)
-
-	w.Write([]byte(answerJSON))
+	//resId, err := uuid.Parse(mux.Vars(r)["id"])
+	//
+	//if err != nil {
+	//
+	//	return
+	//}
+	//
 
 }

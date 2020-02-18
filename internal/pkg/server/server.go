@@ -1,20 +1,21 @@
 package server
 
 import (
-	"../middleware"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"os"
-	"../handler"
+	"strconv"
+	"test_task/internal/pkg/config"
+	"test_task/internal/pkg/middleware"
+	"test_task/internal/pkg/server/handler"
 )
 
 type Server struct {
 	Router *mux.Router
 }
 
-func NewServer() (*Server, error) {
-	server := new(Server)
+func NewRouter() (*mux.Router, error) {
 
 	router := mux.NewRouter()
 
@@ -28,7 +29,13 @@ func NewServer() (*Server, error) {
 
 	router.HandleFunc("/posts/", handler.GetPosts).Methods(http.MethodGet, http.MethodOptions)
 
-	server.Router = router
+	return router, nil
+}
 
-	return server, nil
+func RunServer() {
+	router, err := NewRouter()
+	if err != nil {
+		log.Fatal("Failed to create router")
+	}
+	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(config.MainAppPort), router))
 }

@@ -1,4 +1,4 @@
-package handler
+package models
 
 import (
 	"github.com/google/uuid"
@@ -49,5 +49,10 @@ type Person struct {
 	Surname 		string		`json:"surname" db:"surname"`
 	Patronymic 		string 		`json:"patronymic" db:"patronymic"`
 	Address 		address  	`json:"address" db:"address"`
+}
+
+type Error struct {
+	Message string            `json:"error"`
+	Params  map[string]string `json:"params"`
 }
 
