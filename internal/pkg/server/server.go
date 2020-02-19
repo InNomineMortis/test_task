@@ -7,6 +7,7 @@ import (
 	"os"
 	"strconv"
 	"test_task/internal/pkg/config"
+	"test_task/internal/pkg/db_connect"
 	"test_task/internal/pkg/middleware"
 	"test_task/internal/pkg/server/handler"
 )
@@ -18,7 +19,8 @@ type Server struct {
 func NewRouter() (*mux.Router, error) {
 
 	router := mux.NewRouter()
-
+	db_data  := db_connect.OpenSqlxViaPgxConnPool()
+	db_data.QueryRowx("SELECT id,name, surname FROM person")
 	AccessLogOut := new(middleware.AccessLogger)
 	AccessLogOut.StdLogger = log.New(os.Stdout, "STD ", log.LUTC|log.Lshortfile)
 
