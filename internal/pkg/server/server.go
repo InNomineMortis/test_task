@@ -1,43 +1,22 @@
 package server
 
 import (
-	"github.com/gorilla/mux"
-	"log"
+	"github.com/gin-gonic/gin"
 	"net/http"
-	"os"
-	"strconv"
-	"test_task/internal/pkg/config"
 	"test_task/internal/pkg/db_connect"
-	"test_task/internal/pkg/middleware"
-	"test_task/internal/pkg/server/handler"
 )
 
-type Server struct {
-	Router *mux.Router
-}
-
-func NewRouter() (*mux.Router, error) {
-
-	router := mux.NewRouter()
-	db_data  := db_connect.OpenSqlxViaPgxConnPool()
-	db_data.QueryRowx("SELECT id,name, surname FROM person")
-	AccessLogOut := new(middleware.AccessLogger)
-	AccessLogOut.StdLogger = log.New(os.Stdout, "STD ", log.LUTC|log.Lshortfile)
-
-	router.Use(middleware.CorsMiddleware)
-	router.Use(AccessLogOut.AccessLogMiddleware)
-
-	router.PathPrefix("/api/").Subrouter()
-
-	router.HandleFunc("/posts/", handler.GetPosts).Methods(http.MethodGet, http.MethodOptions)
-
-	return router, nil
-}
-
 func RunServer() {
-	router, err := NewRouter()
-	if err != nil {
-		log.Fatal("Failed to create router")
-	}
-	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(config.MainAppPort), router))
+	database := db_connect.InitDB("postgres@postgres:5432", "test")
+
+	router := gin.Default()
+	router.GET("/api/posts", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"id" : "it should be woriking",
+			"Text" : "SOme text",
+		})
+	})
+	http.ListenAndServe(":7777", router)
+
+	defer database.Close()
 }

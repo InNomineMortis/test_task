@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func GetPosts(w http.ResponseWriter, r *http.Request) {
+func GetPosts(w http.ResponseWriter, r *http.Request) (data string){
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 
 	//TODO answer
@@ -18,5 +18,5 @@ func GetPosts(w http.ResponseWriter, r *http.Request) {
 	//	return
 	//}
 	//
-
+	return "some data"
 }
