@@ -19,11 +19,11 @@ type Post struct {
 	Header 			string      `json:"header" db:"header"`
 	Text   			string      `json:"text"   db:"text"`
 	Timestamp 		string 		`json:"timestamp" db:"timestamp"`
-	Address 		address  	`json:"address" db:"address"`
 	Comments 		[]comments  `json:"comments"`
 }
 
 type address struct {
+	PersonID		uuid.UUID 	`json:"PersonId"`
 	Index 	 		int 		`json:"index"`
 	Country  		string 		`json:"country"`
 	Region   		string 		`json:"region"`
