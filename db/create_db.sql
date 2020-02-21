@@ -3,10 +3,10 @@ DROP TABLE post;
 DROP TABLE address;
 DROP TABLE person;
 
-CREATE EXTENSION pgcrypto;
+-- CREATE EXTENSION pgcrypto;
 
 CREATE TABLE person(
-   id uuid PRIMARY KEY,
+   id int PRIMARY KEY,
    avatar_url VARCHAR(70) DEFAULT '',
    name VARCHAR(50) NOT NULL,
    surname VARCHAR(70) NOT NULL,
@@ -14,8 +14,8 @@ CREATE TABLE person(
 );
 
 CREATE TABLE post (
-    id uuid PRIMARY KEY,
-    person_id uuid NOT NULL,
+    id int PRIMARY KEY,
+    person_id int NOT NULL,
     header VARCHAR(120) NOT NULL,
     text VARCHAR(360) NOT NULL,
     timestamp VARCHAR(32) NOT NULL,
@@ -23,17 +23,17 @@ CREATE TABLE post (
 );
 
 CREATE TABLE comment(
-    id uuid PRIMARY KEY,
-    post_id uuid NOT NULL,
+    id int PRIMARY KEY,
+    post_id int NOT NULL,
     text VARCHAR(240) NOT NULL,
-    person_id uuid NOT NULL,
+    person_id int NOT NULL,
     FOREIGN KEY (person_id) references person(id),
     FOREIGN KEY (post_id) references post(id)
 );
 
 CREATE TABLE address(
-    id uuid PRIMARY KEY,
-    person_id uuid NOT NULL,
+    id int PRIMARY KEY,
+    person_id int NOT NULL,
     index int NOT NULL,
     country varchar(20) NOT NULL,
     region varchar(30) NOT NULL,

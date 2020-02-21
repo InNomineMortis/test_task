@@ -1,7 +1,6 @@
 package models
 
 import (
-	"github.com/google/uuid"
 	"time"
 )
 
@@ -14,15 +13,16 @@ func init() {
 const TimeFormat = time.RFC3339 //duplicate
 
 type Post struct {
-	ID     			uuid.UUID   `json:"id"     db:"id"`
-	PersonID 		uuid.UUID   `json:"person_id" db:"person_id"`
+	ID     			int  		`json:"id"     db:"id"`
 	Header 			string      `json:"header" db:"header"`
 	Text   			string      `json:"text"   db:"text"`
 	Timestamp 		string 		`json:"timestamp" db:"timestamp"`
+	Persons			Person		`json:"persons"`
+	Responses 		[]Comments	`json:"responses"`
 }
 
 type address struct {
-	PersonID		uuid.UUID 	`json:"PersonId"`
+	PersonID		int			`json:"id"`
 	Index 	 		int 		`json:"index"`
 	Country  		string 		`json:"country"`
 	Region   		string 		`json:"region"`
@@ -34,16 +34,16 @@ type address struct {
 	Flat 			string 		`json:"flat"`
 }
 
-type comments struct {
-	PostId 			uuid.UUID 	`json:"post_id" db:"post_id"`
-	ID 				uuid.UUID 	`json:"id" db:"id"`
+type Comments struct {
+	PostId 			int 		`json:"post_id" db:"post_id"`
+	ID 				int 		`json:"id" db:"id"`
 	Text 			string		`json:"text" db:"text"`
-	PersonId 		uuid.UUID 	`json:"person_id" db:"person_id"`
+	PersonId 		int			`json:"person.id" db:"person_id"`
 }
 
 type Person struct {
-	ID 				uuid.UUID	`json:"id" db:"id"`
-	AvatarURL 		string		`json:"avatar_url" db:"avatar_url"`
+	ID 				int			`json:"id" db:"id"`
+	AvatarURL 		string		`json:"avatarURL" db:"avatar_url"`
 	Name 			string 		`json:"name" db:"name"`
 	Surname 		string		`json:"surname" db:"surname"`
 	Patronymic 		string 		`json:"patronymic" db:"patronymic"`
