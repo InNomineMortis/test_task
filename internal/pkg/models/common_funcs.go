@@ -32,7 +32,5 @@ func StringsToUuids(strIDs []string) []uuid.UUID {
 
 func SetError(w http.ResponseWriter, code int, msg string) {
 	w.WriteHeader(code)
-	errJSON, _ := Error{Message: msg}.MarshalJSON()
-	w.Write(errJSON)
 	return
 }

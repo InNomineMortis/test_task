@@ -1,10 +1,14 @@
 package server
 
 import (
-	"fmt"
+	"encoding/json"
+	//"fmt"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
+	"os"
 	"test_task/internal/pkg/db_connect"
+	"test_task/internal/pkg/models"
 )
 
 func RunServer() {
@@ -12,12 +16,20 @@ func RunServer() {
 
 	router := gin.Default()
 	router.GET("/api/posts", func(c *gin.Context) {
-		qres := database.QueryRowx(`SELECT id, person_id, header, text, timestamp, address FROM post`)
-		fmt.Println(qres)
-		c.JSON(200, gin.H{
-			"id" : "it should be woriking",
-			"Text" : "SOme text",
-		})
+
+		var res []models.Post
+		var resOne models.Post
+		qres, err := database.Queryx(`SELECT id, person_id, header, text, timestamp FROM post`)
+		if err != nil {
+			log.Fatal("Error while querying from db")
+		}
+		for qres.Next() {
+			err = qres.StructScan(&resOne)
+			res = append(res, resOne)
+		}
+		ans, err := json.Marshal(res)
+		os.Stdout.Write(ans)
+		c.JSON(200, ans)
 	})
 	http.ListenAndServe(":7777", router)
 

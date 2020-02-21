@@ -19,7 +19,6 @@ type Post struct {
 	Header 			string      `json:"header" db:"header"`
 	Text   			string      `json:"text"   db:"text"`
 	Timestamp 		string 		`json:"timestamp" db:"timestamp"`
-	Comments 		[]comments  `json:"comments"`
 }
 
 type address struct {
