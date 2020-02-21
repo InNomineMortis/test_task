@@ -27,9 +27,7 @@ func RunServer() {
 			err = qres.StructScan(&resOne)
 			res = append(res, resOne)
 		}
-		ans, err := json.Marshal(res)
-		os.Stdout.Write(ans)
-		c.JSON(200, ans)
+		c.JSON(http.StatusOK, res)
 	})
 	http.ListenAndServe(":7777", router)
 
