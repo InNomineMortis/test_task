@@ -6,7 +6,7 @@ DROP TABLE person;
 -- CREATE EXTENSION pgcrypto;
 
 CREATE TABLE person(
-   id int PRIMARY KEY,
+   person_id int PRIMARY KEY,
    avatar_url VARCHAR(70) DEFAULT '',
    name VARCHAR(50) NOT NULL,
    surname VARCHAR(70) NOT NULL,
@@ -14,25 +14,25 @@ CREATE TABLE person(
 );
 
 CREATE TABLE post (
-    id int PRIMARY KEY,
+    post_id int PRIMARY KEY,
     person_id int NOT NULL,
     header VARCHAR(120) NOT NULL,
-    text VARCHAR(360) NOT NULL,
+    post_text VARCHAR(360) NOT NULL,
     timestamp VARCHAR(32) NOT NULL,
-    FOREIGN KEY (person_id) references person(id)
+    FOREIGN KEY (person_id) references person(person_id)
 );
 
 CREATE TABLE comment(
-    id int PRIMARY KEY,
+    comment_id int PRIMARY KEY,
     post_id int NOT NULL,
-    text VARCHAR(240) NOT NULL,
+    comment_text VARCHAR(240) NOT NULL,
     person_id int NOT NULL,
-    FOREIGN KEY (person_id) references person(id),
-    FOREIGN KEY (post_id) references post(id)
+    FOREIGN KEY (person_id) references person(person_id),
+    FOREIGN KEY (post_id) references post(post_id)
 );
 
 CREATE TABLE address(
-    id int PRIMARY KEY,
+    address_id int PRIMARY KEY,
     person_id int NOT NULL,
     index int NOT NULL,
     country varchar(20) NOT NULL,
@@ -43,5 +43,5 @@ CREATE TABLE address(
     house_number int NOT NULL,
     section varchar(20) NOT NULL,
     flat varchar(10) NOT NULL,
-    FOREIGN KEY (person_id) references person(id)
+    FOREIGN KEY (person_id) references person(person_id)
 );
