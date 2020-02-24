@@ -5,10 +5,10 @@ INSERT INTO person(person_id, avatar_url, name,
                    surname, patronymic) VALUES (2,
                                                 'anotherone', 'somename2', 'somesurname2', 'thirdname2');
 INSERT INTO post(post_id, person_id, header, post_text, timestamp
-) VALUES (1,(select person_id from person where name ='somename'), 'someheader', 'so mmuch text, o my god','');
+) VALUES (1,(select person_id from person where name ='somename'), 'someheader', 'so mmuch text, o my god','2020-02-10T12:02:44.073Z');
 
 INSERT INTO post(post_id, person_id, header, post_text, timestamp
-) VALUES (2,(select person_id from person where name ='somename2'), 'someheader2323', 'so mmuch text, o my god, shock content','21.01.01');
+) VALUES (2,(select person_id from person where name ='somename2'), 'someheader2323', 'so mmuch text, o my god, shock content','2020-02-10T12:02:44.073Z');
 
 INSERT INTO address(address_id, person_id, index, country, region,
                     city, street, metro, house_number, section, flat) VALUES (1,
