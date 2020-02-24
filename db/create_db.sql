@@ -10,7 +10,9 @@ CREATE TABLE person(
    avatar_url VARCHAR(70) DEFAULT '',
    name VARCHAR(50) NOT NULL,
    surname VARCHAR(70) NOT NULL,
-   patronymic VARCHAR(70) NOT NULL
+   patronymic VARCHAR(70) NOT NULL,
+   address int NOT NULL,
+   FOREIGN KEY (address) references address(address_id)
 );
 
 CREATE TABLE post (
@@ -19,7 +21,9 @@ CREATE TABLE post (
     header VARCHAR(120) NOT NULL,
     post_text VARCHAR(360) NOT NULL,
     timestamp VARCHAR(32) NOT NULL,
-    FOREIGN KEY (person_id) references person(person_id)
+    address_id int NOT NULL,
+    FOREIGN KEY (person_id) references person(person_id),
+    FOREIGN KEY (address_id) references address(address_id)
 );
 
 CREATE TABLE comment(
@@ -42,6 +46,5 @@ CREATE TABLE address(
     metro varchar(15) NOT NULL,
     house_number int NOT NULL,
     section varchar(20) NOT NULL,
-    flat varchar(10) NOT NULL,
-    FOREIGN KEY (person_id) references person(person_id)
+    flat varchar(10) NOT NULL
 );

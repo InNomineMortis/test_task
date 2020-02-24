@@ -28,8 +28,7 @@ func InitDB(database string) *sqlx.DB{
 	if err != nil {
 		fmt.Println("Panic, while loading db", err)
 		log.Fatal(err)
-	} else {
-		fmt.Printf("Successfully connected to %v, database %v", host, database)
 	}
+	fmt.Printf("Successfully connected to %v, database %v", host, database)
 	return Db
 }
