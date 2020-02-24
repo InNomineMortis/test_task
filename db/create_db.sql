@@ -1,9 +1,9 @@
-DROP TABLE comment;
-DROP TABLE post;
-DROP TABLE address;
-DROP TABLE person;
+-- DROP TABLE comment cascade ;
+-- DROP TABLE post cascade;
+-- DROP TABLE person cascade;
+-- DROP TABLE address cascade;
 
--- CREATE EXTENSION pgcrypto;
+--CREATE EXTENSION pgcrypto;
 
 CREATE TABLE address
 (
