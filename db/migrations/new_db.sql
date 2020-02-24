@@ -62,12 +62,12 @@ VALUES (1, (select address_id from address where index = 143112), 'skdjsada', 's
 
 INSERT INTO post(post_id, person_id, address_id, header, text, timestamp)
 VALUES (1, (select person_id from person where name = 'somename'),
-        (select address_id from person where name = 'somename'), 'someheader', 'so mmuch text, o my god', '21.01.01');
+        (select address_id from person where name = 'somename'), 'someheader', 'so mmuch text, o my god', '2020-02-10T12:02:44.073Z');
 
 INSERT INTO post(post_id, person_id, address_id, header, text, timestamp)
 VALUES (2, (select person_id from person where name = 'somename2'),
         (select address_id from address where index = 143112), 'someheader2323',
-        'so mmuch text, o my god, shock content', '21.01.01');
+        'so mmuch text, o my god, shock content', '2020-02-10T12:02:44.073Z');
 
 
 INSERT INTO comment(comment_id, post_id, comment_text, person_id)
