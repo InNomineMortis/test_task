@@ -14,6 +14,8 @@ import (
 */
 func GetPosts(database *sqlx.DB) gin.HandlerFunc{
 		return func(c *gin.Context){
+			c.Request.Header.Set("Access-Control-Allow-Origin", "*")
+			c.Request.Header.Set("Access-Control-Allow-Credentials", "true")
 			var res []models.Post
 			var resOne models.Post
 			var parse models.GetPost

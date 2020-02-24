@@ -12,6 +12,7 @@ services:
       dockerfile: ./build/docker/images/main/Dockerfile
     ports:
     - "7777:7777"
+    - "8080:8080"
     depends_on:
       - postgres
     networks:
