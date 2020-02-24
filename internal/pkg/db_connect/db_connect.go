@@ -10,25 +10,26 @@ import (
 var Db *sqlx.DB
 
 const (
-	host = "postgres_db"
-	port = 5432
-	user = "postgres"
+	host     = "postgres_db"
+	port     = 5432
+	user     = "postgres"
 	password = "postgres"
-	dbname = "postgres"
+	dbname   = "postgres"
 )
 
-func InitDB(database string) *sqlx.DB{
+func InitDB(database string) *sqlx.DB {
 	var err error
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname)
-	fmt.Println(psqlInfo)
+	log.Printf("Database connect info: %s", psqlInfo)
 	Db, err = sqlx.Open("postgres", psqlInfo)
 
 	if err != nil {
-		fmt.Println("Panic, while loading db", err)
-		log.Fatal(err)
+		log.Fatalf("Error - connecting to database: %s", err.Error())
+		return nil
 	}
-	fmt.Printf("Successfully connected to %v, database %v", host, database)
+
+	log.Printf("Successfully connected to %v, database %v", host, database)
 	return Db
 }
