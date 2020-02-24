@@ -6,7 +6,7 @@ networks:
 services:
   main:
     image: test_task
-    container_name: testtask
+    container_name: test_task
     build:
       context: .
       dockerfile: ./build/docker/images/main/Dockerfile
@@ -23,7 +23,7 @@ services:
     restart: always
   postgres:
     image: postgres:latest
-    container_name: postgresDB
+    container_name: postgres_db
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
