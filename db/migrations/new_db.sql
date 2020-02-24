@@ -1,5 +1,20 @@
 -- +migrate Up
-CREATE EXTENSION pgcrypto;
+
+--CREATE EXTENSION pgcrypto;
+
+CREATE TABLE address(
+                        address_id int PRIMARY KEY,
+                        person_id int NOT NULL,
+                        index int NOT NULL,
+                        country varchar(20) NOT NULL,
+                        region varchar(30) NOT NULL,
+                        city varchar(15) NOT NULL,
+                        street varchar(30) NOT NULL,
+                        metro varchar(15) NOT NULL,
+                        house_number int NOT NULL,
+                        section varchar(20) NOT NULL,
+                        flat varchar(10) NOT NULL
+);
 
 CREATE TABLE address
 (

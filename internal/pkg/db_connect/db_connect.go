@@ -30,6 +30,6 @@ func InitDB(database string) *sqlx.DB {
 		return nil
 	}
 
-	fmt.Printf("Successfully connected to %v, database %v", host, database)
+	log.Printf("Successfully connected to %v, database %v", host, database)
 	return Db
 }
