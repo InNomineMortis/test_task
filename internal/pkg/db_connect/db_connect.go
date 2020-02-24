@@ -17,7 +17,7 @@ const (
 	dbname = "postgres"
 )
 
-func InitDB(address, database string) *sqlx.DB{
+func InitDB(database string) *sqlx.DB{
 	var err error
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
