@@ -1,0 +1,37 @@
+version: '3'
+
+networks:
+  uniting_net:
+
+services:
+  main:
+    image: test_task
+    build:
+      context: .
+      dockerfile: ./build/docker/images/main/Dockerfile
+    ports:
+    - "7777:7777"
+    depends_on:
+      - postgres
+    networks:
+      - uniting_net
+    tty: true
+    stdin_open: true
+    environment:
+      - DEPLOYAPI
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+    volumes:
+    - $HOME/docker/volumes/postgres:/var/lib/postgresql/data  postgres
+    ports:
+    - "5432:5432"
+    networks:
+      - uniting_net
+    restart: always
+volumes:
+  postgres-data:
