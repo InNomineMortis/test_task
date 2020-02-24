@@ -12,7 +12,7 @@ import (
 )
 
 func RunServer() {
-	database := db_connect.InitDB("postgres@postgres:5432", "postgres")
+	database := db_connect.InitDB("127.0.0.1:5432", "postgres")
 
 	router := gin.Default()
 	router.Use(cors.Default())
@@ -27,7 +27,7 @@ func RunServer() {
 							join person on post.person_id = person.person_id
 							join address a on person.person_id = a.person_id`)
 		if err != nil {
-			log.Fatal("Error while querying from db")
+			log.Fatal("Error while querying from db: ", err.Error())
 		}
 		var qresComment *sqlx.Rows
 		for qres.Next() {

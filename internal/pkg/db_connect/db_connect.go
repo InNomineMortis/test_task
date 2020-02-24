@@ -11,7 +11,7 @@ import (
 var Db *sqlx.DB
 
 const (
-	host = "localhost"
+	host = "postgresDB"
 	port = 5432
 	user = "postgres"
 	password = "postgres"
@@ -32,7 +32,7 @@ func InitDB(address, database string) *sqlx.DB{
 	}
 
 	if err := Db.Ping(); err != nil {
-		fmt.Println("Panic, while pinging db")
+		fmt.Println("Panic, while pinging db", err.Error())
 	}
 	fmt.Println("Successfully connected to %v, database %v", address, database)
 
