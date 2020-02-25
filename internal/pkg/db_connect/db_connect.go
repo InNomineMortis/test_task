@@ -5,17 +5,25 @@ import (
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"log"
+	"os"
 )
 
 var Db *sqlx.DB
 
-const (
-	host     = "postgres_db"
+var (
+	host     = "localhost"
 	port     = 5432
 	user     = "postgres"
 	password = "postgres"
 	dbname   = "postgres"
 )
+
+func init() {
+	dbHost := os.Getenv("DB_HOST")
+	if dbHost != "" {
+		host = dbHost
+	}
+}
 
 func InitDB(database string) *sqlx.DB {
 	var err error

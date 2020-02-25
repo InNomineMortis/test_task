@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jmoiron/sqlx"
 	"net/http"
-	"test_task/internal/pkg/models"
+	"test_task/internal/pkg/models/presenters"
 )
 
 /*
@@ -12,9 +12,7 @@ import (
 */
 func GetPosts(db *sqlx.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Request.Header.Set("Access-Control-Allow-Origin", "*")
-		c.Request.Header.Set("Access-Control-Allow-Credentials", "true")
-		res := models.SelectPosts(db)
+		res := presenters.PostPresenter.SelectPosts(db)
 		c.JSON(http.StatusOK, res)
 	}
 }
