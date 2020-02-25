@@ -21,6 +21,7 @@ services:
     stdin_open: true
     environment:
       - DEPLOYAPI
+      - DB_HOST=postgres_db
     restart: always
   postgres:
     image: postgres:latest
