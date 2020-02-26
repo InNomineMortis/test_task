@@ -1,9 +1,7 @@
 package models
 
-import "github.com/jmoiron/sqlx"
-
 type PersonPresenter interface {
-	GetPerson(db *sqlx.DB, id int) *Person
+	GetPerson(id int) *Person
 }
 
 type Person struct {

@@ -1,11 +1,7 @@
 package models
 
-import (
-	"github.com/jmoiron/sqlx"
-)
-
 type PostPresenter interface {
-	SelectPosts(db *sqlx.DB) []Post
+	SelectPosts() []Post
 }
 
 type Post struct {

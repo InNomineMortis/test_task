@@ -1,9 +1,7 @@
 package models
 
-import "github.com/jmoiron/sqlx"
-
 type CommentPresenter interface {
-	SelectCommentsByPost(db *sqlx.DB, postID int) []Comment
+	SelectCommentsByPost(postID int) []Comment
 }
 
 type Comment struct {

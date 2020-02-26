@@ -1,9 +1,7 @@
 package models
 
-import "github.com/jmoiron/sqlx"
-
 type AddressPresenter interface {
-	GetAddress(db *sqlx.DB, id int) *Address
+	GetAddress(id int) *Address
 }
 
 type Address struct {
